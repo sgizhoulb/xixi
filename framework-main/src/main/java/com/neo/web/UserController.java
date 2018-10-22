@@ -23,7 +23,7 @@ public class UserController {
 	public ModelAndView goHome(){
 		System.out.println("go to the home page!");
 		ModelAndView mode = new ModelAndView();
-		mode.addObject("name", "zhangsan4422wwwww");
+		mode.addObject("name", "哈哈哈");
 		mode.setViewName("index");
 		List<UserEntity> users=userMapper.getAll();
 		mode.addObject("userList", users);
