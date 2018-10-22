@@ -14,13 +14,12 @@ public class HomeController {
 			return "index";
 		}
 		
-		
 		@RequestMapping(value="/home/page")
 		@ResponseBody
 		public ModelAndView goHome(){
 			System.out.println("go to the home page!");
 			ModelAndView mode = new ModelAndView();
-			mode.addObject("name", "zhangsan4422");
+			mode.addObject("name", "zhangsan4422wwwww");
 			mode.setViewName("index");
 			return mode;
 		}

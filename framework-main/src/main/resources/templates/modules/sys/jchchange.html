@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>寄存货信息变动表
+</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:jchchange:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:jchchange:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:jchchange:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <button class="layui-btn">一个标准的按钮</button>
+ <div class="layui-row layui-col-space5 " >
+  <div class="layui-col-md5">
+    <div class="layui-row grid-demo">
+      <div class="layui-col-md3 layui-bg-red">
+        内部列
+      </div>
+      <div class="layui-col-md9">
+        内部列
+      </div>
+      <div class="layui-col-md12">
+       <i class="layui-icon layui-icon-release" style="font-size: 30px; color: red;"></i> 
+     
+      </div>
+    </div>
+  </div>
+</div>
+
+        <table id="jqGrid"  ></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">省公司市场</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxSgssc" placeholder="省公司市场"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">单号</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxDh" placeholder="单号"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">请示件号码</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxQsjhm" placeholder="请示件号码"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">产品类别</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxCplb" placeholder="产品类别"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">存储产品类别</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxCplbName" placeholder="存储产品类别"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">产品规格</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxCpgg" placeholder="产品规格"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">产品单位</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxCpdw" placeholder="产品单位"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">变动单价</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxBddj" placeholder="变动单价"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">变动数量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxBdsl" placeholder="变动数量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">变动金额</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxBdje" placeholder="变动金额"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">借货金额    (借货中的提货用)</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxJhzje" placeholder="借货金额    (借货中的提货用)"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">汇款日期</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxHkrq" placeholder="汇款日期"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">汇款金额</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxHkje" placeholder="汇款金额"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">汇款人</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxHkr" placeholder="汇款人"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">变动类型:
+            01：增加寄存货
+            02：减少寄存货
+            
+            </div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxBdlx" placeholder="变动类型:
+            01：增加寄存货
+            02：减少寄存货
+            
+            "/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">寄存类型
+                01 : 顾客寄存货
+               02：市场寄存货
+               03：市场借货</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxJclx" placeholder="寄存类型
+                01 : 顾客寄存货
+               02：市场寄存货
+               03：市场借货"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">变动日期</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxBdrq" placeholder="变动日期"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">创建日期</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.mxCjrq" placeholder="创建日期"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label"></div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="jchChange.jchId" placeholder=""/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="${request.contextPath}/statics/js/modules/sys/jchchange.js?_${.now?long}"></script>
+
+</body>
+</html>

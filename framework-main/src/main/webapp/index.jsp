@@ -8,9 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-    hello world!!!
-    name=${name } welcome!
- 
+    hello world!!!<br>
+    name=${name } welcome!<br>
+    数据库数据取出来啦：=<font color="red">《${userList }》</font> welcome!
+     
 </body>
 </html>
  
